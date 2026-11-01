@@ -6,211 +6,633 @@
     <title>Saravanan Lakshmanan - Senior QA Engineer & QA Team Leader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #818cf8; }
+
+        /* Hero animated gradient */
+        .hero-bg {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #0f172a, #1e293b);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.15);
+            animation: float linear infinite;
+            pointer-events: none;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Typing cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #818cf8;
+            font-weight: 300;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Scroll-triggered animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered children */
+        .reveal-children > * {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-children.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Skill card hover */
+        .skill-card {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.3s ease,
+                        border-color 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.15);
+            border-color: #a5b4fc;
+        }
+
+        /* Timeline dot pulse */
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #6366f1;
+            position: absolute;
+            left: -7px;
+            top: 6px;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+            animation: pulse-dot 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2); }
+            50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.05); }
+        }
+
+        /* Animated progress bars */
+        .progress-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #6366f1, #818cf8);
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Section card hover glow */
+        .section-card {
+            transition: box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        .section-card:hover {
+            box-shadow: 0 8px 32px -8px rgba(99, 102, 241, 0.12);
+            border-color: #c7d2fe;
+        }
+
+        /* Achievement badge shimmer */
+        .achievement-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.06), transparent);
+            transition: left 0.6s ease;
+        }
+        .achievement-card:hover::before {
+            left: 100%;
+        }
+        .achievement-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -8px rgba(99, 102, 241, 0.12);
+        }
+
+        /* Nav link active indicator */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #818cf8;
+            transition: width 0.3s ease, left 0.3s ease;
+            border-radius: 1px;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+            left: 0;
+        }
+        .nav-link:hover { color: #c7d2fe; }
+
+        /* Glassmorphism nav */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.3s ease;
+        }
+        .glass-nav.scrolled {
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact button pulse */
+        .contact-btn {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        .contact-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Counter animation */
+        .counter { font-variant-numeric: tabular-nums; }
+
+        /* Smooth list item reveal */
+        .list-reveal li {
+            opacity: 0;
+            transform: translateX(-15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .list-reveal.visible li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans leading-relaxed">
 
-    <!-- Header / Hero Section -->
-    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white py-16 px-6 shadow-xl">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Saravanan Lakshmanan</h1>
-                <p class="text-indigo-400 text-xl font-medium mt-2">Senior Software QA Engineer & QA Team Leader</p>
-                <div class="flex flex-wrap gap-4 mt-4 text-sm text-slate-300">
-                    <span><i class="fa-solid fa-location-dot mr-2 text-indigo-400"></i>Bangalore</span>
-                    <span><i class="fa-solid fa-phone mr-2 text-indigo-400"></i>9659115949</span>
-                    <span><i class="fa-solid fa-envelope mr-2 text-indigo-400"></i>saravananlbtechit@gmail.com</span>
-                </div>
+    <!-- Fixed Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 py-3 px-6">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="#hero" class="text-white font-bold text-lg tracking-tight">
+                <span class="text-indigo-400">S</span>L
+            </a>
+            <div class="hidden md:flex gap-6 text-sm text-slate-300">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#education" class="nav-link">Education</a>
             </div>
-            <div class="flex gap-3">
-                <a href="mailto:saravananlbtechit@gmail.com" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-lg font-medium shadow transition flex items-center gap-2">
-                    <i class="fa-solid fa-paper-plane"></i> Contact Me
-                </a>
+            <a href="mailto:saravananlbtechit@gmail.com" class="contact-btn bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg flex items-center gap-2">
+                <i class="fa-solid fa-paper-plane text-xs"></i> Hire Me
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-bg text-white pt-32 pb-20 px-6 min-h-[90vh] flex items-center">
+        <div id="particles" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto w-full relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 px-4 py-1.5 rounded-full text-sm mb-6 reveal">
+                        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                        Available for opportunities
+                    </div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] reveal">
+                        Saravanan<br>
+                        <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Lakshmanan</span>
+                    </h1>
+                    <p id="typed-title" class="text-xl md:text-2xl text-slate-300 mt-4 font-light typing-cursor reveal"></p>
+                    <div class="flex flex-wrap gap-5 mt-8 text-sm text-slate-400 reveal">
+                        <span class="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg">
+                            <i class="fa-solid fa-location-dot text-indigo-400"></i>Bangalore, India
+                        </span>
+                        <span class="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg">
+                            <i class="fa-solid fa-phone text-indigo-400"></i>9659115949
+                        </span>
+                        <span class="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg">
+                            <i class="fa-solid fa-envelope text-indigo-400"></i>saravananlbtechit@gmail.com
+                        </span>
+                    </div>
+                    <div class="flex gap-4 mt-8 reveal">
+                        <a href="mailto:saravananlbtechit@gmail.com" class="contact-btn bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-semibold shadow-xl shadow-indigo-500/20 flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Contact Me
+                        </a>
+                        <a href="#experience" class="border border-slate-600 hover:border-indigo-400 text-slate-300 hover:text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all">
+                            <i class="fa-solid fa-arrow-down"></i> View Work
+                        </a>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-2xl text-center hover:bg-white/10 transition-all duration-300">
+                            <div class="text-3xl font-bold text-indigo-400 counter" data-target="9.5">0</div>
+                            <div class="text-xs text-slate-400 mt-1">Years Experience</div>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-2xl text-center hover:bg-white/10 transition-all duration-300">
+                            <div class="text-3xl font-bold text-purple-400 counter" data-target="50">0</div>
+                            <div class="text-xs text-slate-400 mt-1">Apps Tested</div>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-2xl text-center hover:bg-white/10 transition-all duration-300">
+                            <div class="text-3xl font-bold text-pink-400 counter" data-target="4">0</div>
+                            <div class="text-xs text-slate-400 mt-1">Awards Won</div>
+                        </div>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-5 rounded-2xl text-center hover:bg-white/10 transition-all duration-300">
+                            <div class="text-3xl font-bold text-emerald-400 counter" data-target="3">0</div>
+                            <div class="text-xs text-slate-400 mt-1">Teams Led</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-6 py-10 space-y-12">
+    <main class="max-w-5xl mx-auto px-6 py-16 space-y-16">
 
         <!-- Professional Summary -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
-                <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg text-lg"><i class="fa-solid fa-user-tie"></i></span>
+        <section id="about" class="section-card bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 reveal">
+            <h2 class="text-2xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                <span class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-2.5 rounded-xl text-lg shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-user-tie"></i>
+                </span>
                 Professional Summary
             </h2>
-            <p class="text-slate-600 leading-relaxed text-justify">
+            <p class="text-slate-600 leading-relaxed text-[15px] text-justify">
                 Experienced QA Team Leader and Senior Software QA Engineer with 9.5 years of extensive expertise in both manual and automation testing. Proficient in developing and executing test plans, test cases, and test scripts for various software applications. Adept at ensuring high-quality software delivery through rigorous testing methodologies, AI-assisted task automation, and efficient team management. Expertise in API automation, functional testing, regression testing, and performance testing using industry-standard tools like Ready API, JMeter, and Blazemeter. Demonstrated ability to lead QA teams, collaborate with cross-functional integration teams, and drive continuous improvement in testing processes.
             </p>
         </section>
 
         <!-- Technical Skills -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg text-lg"><i class="fa-solid fa-code"></i></span>
+        <section id="skills" class="section-card bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 reveal">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                <span class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-2.5 rounded-xl text-lg shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-code"></i>
+                </span>
                 Skills & Technical Expertise
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-gears text-indigo-500"></i> Automation Frameworks</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal-children">
+                <div class="skill-card bg-gradient-to-br from-slate-50 to-indigo-50/30 p-6 rounded-xl border border-slate-200 cursor-default">
+                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-gears text-indigo-500"></i> Automation Frameworks
+                    </h3>
                     <p class="text-sm text-slate-600">Java, Selenium (UI Automation), Playwright, Jboomi, Ready API (API Automation), REST Assured</p>
+                    <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
                 </div>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-cloud text-indigo-500"></i> CI/CD & Cloud Infrastructure</h3>
+                <div class="skill-card bg-gradient-to-br from-slate-50 to-indigo-50/30 p-6 rounded-xl border border-slate-200 cursor-default">
+                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-cloud text-indigo-500"></i> CI/CD & Cloud Infrastructure
+                    </h3>
                     <p class="text-sm text-slate-600">Jenkins, Harness, Bitbucket, Ansible Playbooks, Docker, Kubernetes, AWS (EC2, Secret Manager)</p>
+                    <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
                 </div>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-gauge-high text-indigo-500"></i> API & Performance Testing</h3>
+                <div class="skill-card bg-gradient-to-br from-slate-50 to-indigo-50/30 p-6 rounded-xl border border-slate-200 cursor-default">
+                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-gauge-high text-indigo-500"></i> API & Performance Testing
+                    </h3>
                     <p class="text-sm text-slate-600">JMeter, Blazemeter, Postman, REST & SOAP Web Services, Swagger/OpenAPI, OAuth</p>
+                    <div class="progress-bar"><div class="progress-fill" data-width="92"></div></div>
                 </div>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-database text-indigo-500"></i> Database & Integration</h3>
+                <div class="skill-card bg-gradient-to-br from-slate-50 to-indigo-50/30 p-6 rounded-xl border border-slate-200 cursor-default">
+                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-database text-indigo-500"></i> Database & Integration
+                    </h3>
                     <p class="text-sm text-slate-600">SQL, Boomi Runtime Integration, Kafka</p>
+                    <div class="progress-bar"><div class="progress-fill" data-width="80"></div></div>
                 </div>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-robot text-indigo-500"></i> AI & Task Automation</h3>
+                <div class="skill-card bg-gradient-to-br from-slate-50 to-indigo-50/30 p-6 rounded-xl border border-slate-200 cursor-default">
+                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-robot text-indigo-500"></i> AI & Task Automation
+                    </h3>
                     <p class="text-sm text-slate-600">Claude AI, Claude Co work, Cursor AI (Repeated task automation, Jira test cards)</p>
+                    <div class="progress-bar"><div class="progress-fill" data-width="88"></div></div>
                 </div>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-list-check text-indigo-500"></i> Management & Core QA</h3>
+                <div class="skill-card bg-gradient-to-br from-slate-50 to-indigo-50/30 p-6 rounded-xl border border-slate-200 cursor-default">
+                    <h3 class="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-indigo-500"></i> Management & Core QA
+                    </h3>
                     <p class="text-sm text-slate-600">Jira, Qmetry, Bugzilla, Functional Testing, Manual Test Case Preparation</p>
+                    <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
                 </div>
             </div>
         </section>
 
         <!-- Work Experience -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg text-lg"><i class="fa-solid fa-briefcase"></i></span>
+        <section id="experience" class="section-card bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 reveal">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                <span class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-2.5 rounded-xl text-lg shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-briefcase"></i>
+                </span>
                 Work History
             </h2>
-            <div class="space-y-8">
+            <div class="space-y-10">
                 <!-- Job 1 -->
-                <div class="border-l-2 border-indigo-500 pl-4 space-y-2">
+                <div class="border-l-2 border-indigo-500 pl-6 space-y-2 relative reveal list-reveal">
+                    <div class="timeline-dot"></div>
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <h3 class="text-xl font-bold text-slate-900">Senior Software QA Engineer</h3>
-                        <span class="text-sm bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-medium mt-1 sm:mt-0">Sep 2024 - Present</span>
+                        <span class="text-sm bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-1 rounded-full font-medium mt-1 sm:mt-0 shadow-sm">Sep 2024 - Present</span>
                     </div>
                     <p class="text-indigo-600 font-medium text-sm">GlobalLogic India Pvt Ltd, Bangalore (Client: Boomi - Runtime Integration Team)</p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm mt-3">
-                        <li><strong>API & Runtime Automation:</strong> Designed and implemented automated API test creation capabilities utilizing Ready API and REST Assured, validating Boomi's core Integration Platform as a Service (iPaaS) runtime engines (Atoms and Molecules) for secure data transformation and reliable connector execution within the Integration Domain.</li>
-                        <li><strong>UI Automation & Integration QA:</strong> Created comprehensive UI automated tests for newly developed features using the Jboomi automation framework (built on Java and Selenium), ensuring seamless end-to-end quality for complex cloud and on-premises integration workflows.</li>
-                        <li><strong>Performance Benchmarking & AI Efficiency:</strong> Executed high-load performance testing on multi-node runtime clusters using JMeter and Blazemeter, and streamlined daily Agile operations by integrating Claude AI, Claude Co work, and Cursor AI for daily task automation, ensuring rapid and efficient task completion.</li>
+                    <ul class="list-none space-y-3 text-slate-600 text-sm mt-4">
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span><strong>API & Runtime Automation:</strong> Designed and implemented automated API test creation capabilities utilizing Ready API and REST Assured, validating Boomi's core Integration Platform as a Service (iPaaS) runtime engines (Atoms and Molecules) for secure data transformation and reliable connector execution within the Integration Domain.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span><strong>UI Automation & Integration QA:</strong> Created comprehensive UI automated tests for newly developed features using the Jboomi automation framework (built on Java and Selenium), ensuring seamless end-to-end quality for complex cloud and on-premises integration workflows.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span><strong>Performance Benchmarking & AI Efficiency:</strong> Executed high-load performance testing on multi-node runtime clusters using JMeter and Blazemeter, and streamlined daily Agile operations by integrating Claude AI, Claude Co work, and Cursor AI for daily task automation, ensuring rapid and efficient task completion.</span>
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Job 2 -->
-                <div class="border-l-2 border-indigo-500 pl-4 space-y-2">
+                <div class="border-l-2 border-indigo-500 pl-6 space-y-2 relative reveal list-reveal">
+                    <div class="timeline-dot"></div>
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <h3 class="text-xl font-bold text-slate-900">QA Team Leader / Senior Software Tester</h3>
-                        <span class="text-sm bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-medium mt-1 sm:mt-0">Dec 2019 - Jun 2024</span>
+                        <span class="text-sm bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-1 rounded-full font-medium mt-1 sm:mt-0 shadow-sm">Dec 2019 - Jun 2024</span>
                     </div>
                     <p class="text-indigo-600 font-medium text-sm">I-exceed Technology Private Limited, Bangalore</p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm mt-3">
-                        <li>Directed and supervised team of 3 members engaged in QA.</li>
-                        <li>Carried out tests to identify, report and repair bugs and glitches.</li>
-                        <li>Assisted team with development of web-based applications in Agile environment.</li>
-                        <li>Collaborated with QA team to test software quality through manual and automated testing.</li>
-                        <li>Created automated Test scripts using Selenium with Java, TestNG, and Cucumber Frameworks.</li>
-                        <li>Used Postman tool for testing API Manually and Rest API Automation.</li>
-                        <li>Investigated team members' bugs and cross-verified modules to increase project efficiency.</li>
-                        <li>Performed backend testing with SQL queries to qualify database and table structures.</li>
+                    <ul class="list-none space-y-3 text-slate-600 text-sm mt-4">
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Directed and supervised team of 3 members engaged in QA.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Carried out tests to identify, report and repair bugs and glitches.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Assisted team with development of web-based applications in Agile environment.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Collaborated with QA team to test software quality through manual and automated testing.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Created automated Test scripts using Selenium with Java, TestNG, and Cucumber Frameworks.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Used Postman tool for testing API Manually and Rest API Automation.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Investigated team members' bugs and cross-verified modules to increase project efficiency.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Performed backend testing with SQL queries to qualify database and table structures.</span>
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Job 3 -->
-                <div class="border-l-2 border-indigo-500 pl-4 space-y-2">
+                <div class="border-l-2 border-indigo-500 pl-6 space-y-2 relative reveal list-reveal">
+                    <div class="timeline-dot"></div>
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <h3 class="text-xl font-bold text-slate-900">Software Tester</h3>
-                        <span class="text-sm bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-medium mt-1 sm:mt-0">Nov 2016 - Nov 2019</span>
+                        <span class="text-sm bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-1 rounded-full font-medium mt-1 sm:mt-0 shadow-sm">Nov 2016 - Nov 2019</span>
                     </div>
                     <p class="text-indigo-600 font-medium text-sm">Nithra Edu Solution, Tiruchengode</p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm mt-3">
-                        <li>Wrote and optimized test cases to maximize success of manual software testing with consistent, thorough approaches.</li>
-                        <li>Monitored resolution of bugs, tested fixes and helped developers tackle ongoing problems by providing QA perspective.</li>
-                        <li>Tested functional and compatibility of new programs or updates in comparison to existing applications.</li>
-                        <li>Completed in-depth usability testing on Windows, Android and iOS mobile devices.</li>
-                        <li>Supported test review, defect control and configuration management within delivery pipeline.</li>
+                    <ul class="list-none space-y-3 text-slate-600 text-sm mt-4">
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Wrote and optimized test cases to maximize success of manual software testing with consistent, thorough approaches.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Monitored resolution of bugs, tested fixes and helped developers tackle ongoing problems by providing QA perspective.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Tested functional and compatibility of new programs or updates in comparison to existing applications.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Completed in-depth usability testing on Windows, Android and iOS mobile devices.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            <span>Supported test review, defect control and configuration management within delivery pipeline.</span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <!-- Projects -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg text-lg"><i class="fa-solid fa-diagram-project"></i></span>
+        <section id="projects" class="section-card bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 reveal">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                <span class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-2.5 rounded-xl text-lg shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-diagram-project"></i>
+                </span>
                 Key Projects
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                    <h3 class="font-semibold text-slate-900 mb-2">Banking Domain Projects</h3>
-                    <p class="text-sm text-slate-600 mb-2">Extensive end-to-end manual and automation testing on:</p>
-                    <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
-                        <li>Almasraf - Retail Onboarding application, NBF - Self Onboarding, SME Connect</li>
-                        <li>NBF Lending - Retail Loan Onboarding, Trumia Corporate Onboarding</li>
-                        <li>CSB-AOS, Equitas - Retail, KVB-Retail, Onboarding, etc.</li>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-children">
+                <div class="skill-card bg-gradient-to-br from-slate-50 to-indigo-50/30 p-6 rounded-xl border border-slate-200 cursor-default">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </span>
+                        <h3 class="font-semibold text-slate-900">Banking Domain Projects</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">Extensive end-to-end manual and automation testing on:</p>
+                    <ul class="text-sm text-slate-600 space-y-1.5">
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1.5 w-1 h-1 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            Almasraf - Retail Onboarding application, NBF - Self Onboarding, SME Connect
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1.5 w-1 h-1 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            NBF Lending - Retail Loan Onboarding, Trumia Corporate Onboarding
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1.5 w-1 h-1 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                            CSB-AOS, Equitas - Retail, KVB-Retail, Onboarding, etc.
+                        </li>
                     </ul>
                 </div>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                    <h3 class="font-semibold text-slate-900 mb-2">Education Domain Projects</h3>
-                    <p class="text-sm text-slate-600 mb-2">Tested high-impact public and consumer software products:</p>
-                    <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
-                        <li>District Recruitment Bureau (Govt. of Tamil Nadu) project for 15 districts</li>
-                        <li>Nithra Tamil Calendar, Aptitude, Logical, Logo Quiz, Solliadi</li>
-                        <li>Over 50+ mobile and web applications tested individually and as a team</li>
+                <div class="skill-card bg-gradient-to-br from-slate-50 to-purple-50/30 p-6 rounded-xl border border-slate-200 cursor-default">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-purple-100 text-purple-600 p-2 rounded-lg">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+                        <h3 class="font-semibold text-slate-900">Education Domain Projects</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-3">Tested high-impact public and consumer software products:</p>
+                    <ul class="text-sm text-slate-600 space-y-1.5">
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1.5 w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></span>
+                            District Recruitment Bureau (Govt. of Tamil Nadu) project for 15 districts
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1.5 w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></span>
+                            Nithra Tamil Calendar, Aptitude, Logical, Logo Quiz, Solliadi
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1.5 w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></span>
+                            Over 50+ mobile and web applications tested individually and as a team
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <!-- Certifications & Achievements -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg text-lg"><i class="fa-solid fa-award"></i></span>
+        <section id="achievements" class="section-card bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 reveal">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                <span class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-2.5 rounded-xl text-lg shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-award"></i>
+                </span>
                 Certifications & Achievements
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <i class="fa-solid fa-certificate text-indigo-600 text-xl mt-1"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 reveal-children">
+                <div class="achievement-card flex items-start gap-4 bg-gradient-to-br from-slate-50 to-indigo-50/30 p-5 rounded-xl border border-slate-200">
+                    <div class="bg-indigo-100 p-2.5 rounded-xl">
+                        <i class="fa-solid fa-certificate text-indigo-600 text-xl"></i>
+                    </div>
                     <div>
                         <h4 class="font-semibold text-slate-900 text-sm">Professional Certifications</h4>
-                        <p class="text-xs text-slate-600 mt-0.5">Playwright, Claude</p>
+                        <p class="text-xs text-slate-600 mt-1">Playwright, Claude</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <i class="fa-solid fa-trophy text-amber-500 text-xl mt-1"></i>
+                <div class="achievement-card flex items-start gap-4 bg-gradient-to-br from-amber-50/50 to-yellow-50/30 p-5 rounded-xl border border-amber-200/50">
+                    <div class="bg-amber-100 p-2.5 rounded-xl">
+                        <i class="fa-solid fa-trophy text-amber-500 text-xl"></i>
+                    </div>
                     <div>
                         <h4 class="font-semibold text-slate-900 text-sm">Tech Spot Award (Sep 2025 & Jan 2026)</h4>
-                        <p class="text-xs text-slate-600 mt-0.5">Initiating performance testing and executing critical feature testing.</p>
+                        <p class="text-xs text-slate-600 mt-1">Initiating performance testing and executing critical feature testing.</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <i class="fa-solid fa-medal text-indigo-600 text-xl mt-1"></i>
+                <div class="achievement-card flex items-start gap-4 bg-gradient-to-br from-slate-50 to-purple-50/30 p-5 rounded-xl border border-slate-200">
+                    <div class="bg-purple-100 p-2.5 rounded-xl">
+                        <i class="fa-solid fa-medal text-purple-600 text-xl"></i>
+                    </div>
                     <div>
                         <h4 class="font-semibold text-slate-900 text-sm">Best Project Submission in Automation</h4>
-                        <p class="text-xs text-slate-600 mt-0.5">Hackathon event conducted by pCloudy and Test-Titans.</p>
+                        <p class="text-xs text-slate-600 mt-1">Hackathon event conducted by pCloudy and Test-Titans.</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <i class="fa-solid fa-star text-amber-500 text-xl mt-1"></i>
+                <div class="achievement-card flex items-start gap-4 bg-gradient-to-br from-amber-50/50 to-yellow-50/30 p-5 rounded-xl border border-amber-200/50">
+                    <div class="bg-amber-100 p-2.5 rounded-xl">
+                        <i class="fa-solid fa-star text-amber-500 text-xl"></i>
+                    </div>
                     <div>
                         <h4 class="font-semibold text-slate-900 text-sm">Shining Star Award</h4>
-                        <p class="text-xs text-slate-600 mt-0.5">Awarded at I-exceed Technology, Bangalore.</p>
+                        <p class="text-xs text-slate-600 mt-1">Awarded at I-exceed Technology, Bangalore.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Education -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        <section id="education" class="section-card bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-slate-100 reveal">
             <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg text-lg"><i class="fa-solid fa-graduation-cap"></i></span>
+                <span class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-2.5 rounded-xl text-lg shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </span>
                 Education
             </h2>
             <div class="space-y-4">
-                <div class="border-l-2 border-indigo-500 pl-4">
-                    <h3 class="font-bold text-slate-900">B.Tech in Information Technology</h3>
-                    <p class="text-sm text-indigo-600">SSM College of Engineering, Anna University - Namakkal, TN</p>
-                    <p class="text-xs text-slate-500 mt-0.5">Aug 2010 - Jun 2014</p>
+                <div class="border-l-2 border-indigo-500 pl-6 relative">
+                    <div class="timeline-dot"></div>
+                    <h3 class="font-bold text-slate-900 text-lg">B.Tech in Information Technology</h3>
+                    <p class="text-sm text-indigo-600 font-medium">SSM College of Engineering, Anna University - Namakkal, TN</p>
+                    <p class="text-xs text-slate-500 mt-1 flex items-center gap-1.5">
+                        <i class="fa-regular fa-calendar"></i> Aug 2010 - Jun 2014
+                    </p>
                 </div>
             </div>
         </section>
@@ -218,9 +640,164 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
-        <p>&copy; 2026 Saravanan Lakshmanan. All rights reserved.</p>
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex justify-center gap-4 mb-6">
+                <a href="mailto:saravananlbtechit@gmail.com" class="bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="tel:9659115949" class="bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+            <p>&copy; 2026 Saravanan Lakshmanan. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        // Floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            if (!container) return;
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.bottom = '-10px';
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Typing animation
+        function typeWriter(element, text, speed) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+        const typedEl = document.getElementById('typed-title');
+        if (typedEl) {
+            setTimeout(() => {
+                typeWriter(typedEl, 'Senior Software QA Engineer & QA Team Leader', 50);
+            }, 600);
+        }
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal, .reveal-children, .list-reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Stagger children
+                    if (entry.target.classList.contains('reveal-children') || entry.target.classList.contains('list-reveal')) {
+                        const children = entry.target.children;
+                        Array.from(children).forEach((child, i) => {
+                            child.style.transitionDelay = (i * 0.1) + 's';
+                        });
+                    }
+
+                    // Animate progress bars
+                    const bars = entry.target.querySelectorAll('.progress-fill');
+                    bars.forEach(bar => {
+                        setTimeout(() => {
+                            bar.style.width = bar.dataset.width + '%';
+                        }, 400);
+                    });
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Counter animation
+        function animateCounter(el) {
+            const target = parseFloat(el.dataset.target);
+            const isDecimal = target % 1 !== 0;
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = eased * target;
+
+                if (isDecimal) {
+                    el.textContent = current.toFixed(1);
+                } else {
+                    el.textContent = Math.floor(current) + '+';
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => counterObserver.observe(c));
+
+        // Sticky nav scroll effect
+        const nav = document.querySelector('.glass-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Active nav link tracking
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 120;
+                if (scrollY >= top) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
